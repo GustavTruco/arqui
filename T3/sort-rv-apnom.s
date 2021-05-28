@@ -41,16 +41,17 @@ sort:                   # void sort(char *noms[], int n) { // registros a0, a1
     j .search_space
 
 .search_space:
-    lbu a5,0(a0)
-    beq a5,t5,.foundSpace1
+    lbu t2,0(a0)
+    beq t2,t5,.foundSpace1
     addi a0,a0,1
-    lbu a5,0(a1)
-    bne a5,t5,.notfoundSpace2
+    lbu t2,0(a1)
+    bne t2,t5,.notfoundSpace2
     j .search_space
 
 .foundSpace1:
-    lbu a5,0(a1)
-    beq a5,t5,.compare
+    lbu t2,0(a1)
+    beq t2,t5,.compare
+    j .notfoundSpace2
 
 .notfoundSpace2:
     addi a1,a1,1

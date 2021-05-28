@@ -57,7 +57,7 @@ sort:
 	j	.L3
 .L17:
 	addi	s1,s1,4		#p++
-.L9:
+.L9:   #while_cond
 	bltu	s1,s4,.L12  # p<ult
 .L1:
 	lw	ra,28(sp)
@@ -71,7 +71,7 @@ sort:
 	jr	ra
 .L7:
 	blt	a0,zero,.L18   #if (strcmp(s,t)<0)  -> .L18
-	sw	s3,0(s1)
+	sw	s3,0(s1)			#switch
 	sw	s2,4(s1)
 	j	.L10
 .L18:

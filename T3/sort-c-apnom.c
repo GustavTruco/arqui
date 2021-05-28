@@ -29,10 +29,10 @@ void sort(char **noms, int n) {
         p= noms;
       }
     }
-    else if (strcmp(s,t)<0){
+    else if (strcmp(s,t)<0){ //if t1<0 
       p++;
     }
-    else {
+    else {                   // if t1>0
       char *tmp= p[0];
       p[0]= p[1];
       p[1]= tmp;
