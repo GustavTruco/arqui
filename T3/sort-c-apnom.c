@@ -6,12 +6,11 @@ void sort(char **noms, int n) {
   while (p<ult) {
     char *s=p[0];
     char *t=p[1];
-    char *c=' ';
-    while (strcmp(s,c)!=0 || strcmp(t,c)!=0){
-      if (strcmp(s,c)!=0){
+    while (*s != ' ' || *t != ' '){
+      if (*s != ' '){
         s++;
       }
-      if (strcmp(t,c)!=0){
+      if (*t != ' '){
         t++;
       }
     }
