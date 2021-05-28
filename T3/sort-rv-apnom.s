@@ -64,9 +64,9 @@ sort:                   # void sort(char *noms[], int n) { // registros a0, a1
     j .decision
 
 .compare_name:
+    sw      t0,56(sp)
     lw      a0,0(t0)
     lw      a1,4(t0)
-    sw      t0,56(sp)
     call    strcmp
     mv      t1,a0
     j .decision
