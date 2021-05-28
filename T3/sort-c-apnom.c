@@ -14,6 +14,8 @@ void sort(char **noms, int n) {
         t++;
       }
     }
+
+    // L15
     s++;
     t++;
 

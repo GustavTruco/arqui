@@ -33,16 +33,42 @@ sort:                   # void sort(char *noms[], int n) { // registros a0, a1
     #################################################
     ### Comienza el codigo que Ud. debe modificar ###
     #################################################
+    li t5,32
+    lw t3,0(t0)
+    lw t4,4(t0)
+    mv a1,t4     
+    mv a0,t3
+    j .search_space
 
-    # no puede alterar los registros s0-s11, si lo hace debe resguardarlos
-    # en 0(sp), 4(sp), ... o 48(sp)
-    # El valor de p esta temporalmente en el registro t0
-    lw      a0,0(t0)    #     int rc= strcmp(p[0], p[1]); // registro t1
+.search_space:
+    lbu a5,0(a0)
+    beq a5,t5,.foundSpace1
+    addi a0,a0,1
+    lbu a5,0(a1)
+    bne a5,t5,.notfoundSpace2
+    j .search_space
+
+.foundSpace1:
+    lbu a5,0(a1)
+    beq a5,t5,.compare
+
+.notfoundSpace2:
+    addi a1,a1,1
+    j .search_space
+
+.compare:
+    call strcmp
+    mv t1,a0
+    beq t1,zero,.compare_name
+    j .decision
+
+.compare_name:
+    lw      a0,0(t0)
     lw      a1,4(t0)
-    sw      t0,56(sp)   # resguardar p en memoria antes de llamar a strcmp
-    call    strcmp      #     // valor retornado queda en registro a0
-                        #     // p ya no esta en el registro t0
-    mv      t1,a0       #     // Dejar resultado de la comparacion en t1
+    sw      t0,56(sp)
+    call    strcmp
+    mv      t1,a0
+    j .decision
 
     #################################################
     ### Fin del codigo que Ud. debe modificar     ###
